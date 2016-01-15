@@ -1,0 +1,17 @@
+metadata:
+  format: Lava-Test Test Definition 1.0
+  name: power-capture-stop
+
+run:
+  steps:
+    - lava-test-case pass-test --shell echo stopping power measurements
+
+handler:
+  handler-name: shell-hooks
+  params:
+    device_config_vars:
+      DEVICE_TYPE: device_type
+    handlers:
+      start_testcase: capture-stop.sh
+      end_testcase: nop.sh
+      postprocess_test_result: compute-metrics.sh
