@@ -6,4 +6,7 @@ date +%s > capture-start-time
 #replace with iio_readdev
 sleep 100 & 
 
+#fake dat file
+touch power.cat
+
 echo $! > capture-pid
