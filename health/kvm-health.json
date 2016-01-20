@@ -1,0 +1,25 @@
+{
+  "job_name": "kvm-health",
+  "device_type": "kvm",
+  "timeout": 1800,
+  "actions": [
+    {
+      "command": "deploy_linaro_image",
+      "parameters":
+        {
+          "image": "http://images.validation.linaro.org/kvm-debian-wheezy.img.gz"
+        }
+    },
+    {
+      "command": "boot_linaro_image"
+    },
+    {
+      "command": "submit_results",
+      "parameters":
+        {
+                "server": "http://lava-baylibre.local:10080/RPC2/",
+                "stream": "/anonymous/lab-health/"
+        }
+    }
+  ]
+}
