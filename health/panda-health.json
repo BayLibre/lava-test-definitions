@@ -10,7 +10,7 @@
                 "dtb": "file:///home/powerci/POWERCI/images/panda-es/omap4-panda-es.dtb",
                 "kernel": "file:///home/powerci/POWERCI/images/panda-es/zImage",
 		"overlays": ["file:///home/powerci/POWERCI/images/panda-es/modules.tar.xz"],
-                "ramdisk": "http://images.validation.linaro.org/lava-masters/panda-master-20150303.img.tgz"
+                "ramdisk": "http://storage.kernelci.org/images/rootfs/buildroot/armel/rootfs.cpio.gz"
             }
         },
         {
