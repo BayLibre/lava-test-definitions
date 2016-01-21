@@ -1,12 +1,8 @@
 # BayLibre Job Templates #
 
-Work In progress
-
 ## Health Tests ##
 
 LAVA Jobs to run automatically for checking the DUT health
 
-## Power ##
-
-Power measurement related tests
+you may launch them nanually with the provided script for testing.
 
