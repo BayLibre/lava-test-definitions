@@ -9,6 +9,18 @@
                 "dtb": "http://images.validation.linaro.org/functional-test-images/bbb/am335x-boneblack.dtb",
                 "kernel": "http://images.validation.linaro.org/functional-test-images/bbb/zImage",
                 "ramdisk": "http://images.validation.linaro.org/functional-test-images/common/linaro-image-minimal-initramfs-genericarmv7a.cpio.gz.u-boot"
+            },
+            "metadata": {
+                "_comment": "Adding the KernelCI type of metadata for compat",
+                "image.type": "linaro",
+                "image.url": "http://images.validation.linaro.org/functional-test-images/bbb/",
+                "kernel.tree": "mainline",
+                "kernel.version": "vtodo",
+                "device.tree": "am335x-boneblack.dtb",
+                "kernel.endian": "little",
+                "kernel.defconfig": "arm-omap2plus_defconfig",
+                "platform.fastboot": "false",
+                "test.plan": "boot"
             }
         },
         {
