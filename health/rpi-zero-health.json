@@ -1,0 +1,58 @@
+{
+    "timeout": 900,
+    "job_name": "rpi-zero-health",
+    "logging_level": "DEBUG",
+    "actions": [
+        {
+            "command": "deploy_linaro_kernel",
+            "parameters": {
+                "dtb": "http://github.com/superna9999/powerci-images-rpi-zero/raw/master/functional-test-images/bcm2835-rpi-b-plus.dtb",
+                "kernel": "http://github.com/superna9999/powerci-images-rpi-zero/blob/master/functional-test-images/zImage",
+                "ramdisk": "http://github.com/superna9999/powerci-images-rpi-zero/raw/master/functional-test-images/rootfs.cpio.uboot"
+            },
+            "metadata": {
+                "_comment": "Adding the KernelCI type of metadata for compat",
+                "image.type": "linaro",
+                "image.url": "http://github.com/superna9999/powerci-images-rpi-zero/raw/master/functional-test-images/",
+                "kernel.tree": "mainline",
+                "kernel.version": "4.4.0",
+                "device.tree": "bcm2835-rpi-b-plus.dtb",
+                "kernel.endian": "little",
+                "kernel.defconfig": "bcm2835_defconfig",
+                "platform.fastboot": "false",
+                "test.plan": "boot"
+            }
+        },
+        {
+          "command": "boot_linaro_image",
+           "parameters": {
+              "boot_cmds": ["setenv autoload no",
+                            "setenv loadkernel 'tftp ${kernel_addr_r} {KERNEL}'",
+                            "setenv loadinitrd 'tftp ${ramdisk_addr_r} {RAMDISK}; setenv initrd_size ${filesize}'",
+                            "setenv loadfdt 'tftp ${fdt_addr_r} {DTB}'",
+                            "setenv bootargs 'console=ttyAMA0,115200n8 root=/dev/ram0 ip=:::::eth0:dhcp'",
+                            "setenv bootcmd 'dhcp; setenv serverip 192.168.1.4; run loadkernel; run loadinitrd; run loadfdt; bootz ${kernel_addr_r} ${ramdisk_addr_r} ${fdt_addr_r}'",
+                            "boot"]
+          }
+        },
+        {
+            "command": "lava_test_shell",
+            "parameters": {
+                "testdef_repos": [
+                    {
+                        "git-repo": "git://git.linaro.org/qa/test-definitions.git",
+                        "testdef": "openembedded/kernel-version.yaml"
+                    }
+                ],
+                "timeout": 2400
+            }
+        },
+        {
+            "command": "submit_results_on_host",
+            "parameters": {
+                "server": "http://lava-baylibre.local:10080/RPC2/",
+                "stream": "/anonymous/lab-health/"
+            }
+        }
+    ]
+}
