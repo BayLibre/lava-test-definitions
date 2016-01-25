@@ -20,7 +20,7 @@
                 "kernel.endian": "little",
                 "kernel.defconfig": "arm-omap2plus_defconfig",
                 "platform.fastboot": "false",
-                "test.plan": "boot"
+                "test.plan": "power"
             }
         },
         {
@@ -52,6 +52,17 @@
                 ],
                 "timeout": 2400
             }
+        },
+        {
+            "command": "lava_command_run",
+            "parameters":
+            {
+                "commands": [
+                    "sleep 10"
+                ],
+                "parser": "^(?P<test_case_id>[^:]+):\\s*(?P<message>w+)\\s+(?P<units>\\w+)\\s+(?P<result>\\w+)",
+                "timeout": 5000
+             }
         },
         {
             "command": "submit_results_on_host",

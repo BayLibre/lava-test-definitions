@@ -9,7 +9,7 @@
             "parameters": {
                 "dtb": "http://github.com/superna9999/powerci-images-rpi-zero/raw/master/functional-test-images/bcm2835-rpi-b-plus.dtb",
                 "kernel": "https://github.com/superna9999/powerci-images-rpi-zero/raw/master/functional-test-images/zImage",
-                "ramdisk": "http://github.com/superna9999/powerci-images-rpi-zero/raw/master/functional-test-images/rootfs.cpio.uboot"
+                "ramdisk": "https://github.com/superna9999/powerci-images-rpi-zero/raw/master/linaro-image-minimal-initramfs-genericarmv6/linaro-image-minimal-initramfs-genericarmv6.cpio.u-boot"
             },
             "metadata": {
                 "_comment": "Adding the KernelCI type of metadata for compat",
@@ -21,7 +21,7 @@
                 "kernel.endian": "little",
                 "kernel.defconfig": "bcm2835_defconfig",
                 "platform.fastboot": "false",
-                "test.plan": "boot"
+                "test.plan": "power"
             }
         },
         {
@@ -37,16 +37,15 @@
           }
         },
         {
-            "command": "lava_test_shell",
-            "parameters": {
-                "testdef_repos": [
-                    {
-                        "git-repo": "git://git.linaro.org/qa/test-definitions.git",
-                        "testdef": "openembedded/kernel-version.yaml"
-                    }
+            "command": "lava_command_run",
+            "parameters":
+            {
+                "commands": [
+                    "sleep 10"
                 ],
-                "timeout": 2400
-            }
+                "parser": "^(?P<test_case_id>[^:]+):\\s*(?P<message>w+)\\s+(?P<units>\\w+)\\s+(?P<result>\\w+)",
+                "timeout": 5000
+             }
         },
         {
             "command": "submit_results_on_host",
