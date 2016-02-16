@@ -1,6 +1,6 @@
 {
     "timeout": 900,
-    "job_name": "bbbb-health",
+    "job_name": "bbb-health",
     "logging_level": "DEBUG",
     "actions": [
         {
