@@ -1,0 +1,49 @@
+{
+    "timeout": 900,
+    "device_type": "meson8b-odroidc1",
+    "job_name": "odroidc1-health",
+    "logging_level": "DEBUG",
+    "actions": [
+        {
+            "command": "deploy_linaro_kernel",
+            "parameters": {
+                "dtb": "file:////home/powerci/POWERCI/images/odroidc1/meson8b-odroidc1.dtb",
+                "kernel": "file:////home/powerci/POWERCI/images/odroidc1/vmlinux",
+		"overlays": ["file:///home/powerci/POWERCI/images/odroidc1/modules.tar.xz"],
+                "ramdisk": "http://storage.kernelci.org/images/rootfs/buildroot/armel/rootfs.cpio.gz"
+            },
+            "metadata": {
+                "image.type": "kernel-ci",
+                "image.url": "http://storage.kernelci.org/mainline/v4.4-rc5/arm-omap2plus_defconfig/",
+                "kernel.tree": "mainline",
+                "kernel.version": "v4.4",
+                "device.tree": "meson8b-odroidc1.dtb",
+                "kernel.endian": "little",
+                "kernel.defconfig": "kernel.config",
+                "platform.fastboot": "false",
+                "test.plan": "boot"
+            }
+        },
+        {
+          "command": "boot_linaro_image"
+        },
+        {
+            "command": "lava_command_run",
+            "parameters":
+            {
+                "commands": [
+                    "sleep 10"
+                ],
+                "parser": "^(?P<test_case_id>[^:]+):\\s*(?P<message>w+)\\s+(?P<units>\\w+)\\s+(?P<result>\\w+)",
+                "timeout": 5000
+             }
+        },
+        {
+            "command": "submit_results_on_host",
+            "parameters": {
+                "server": "http://lava-baylibre.local:10080/RPC2/",
+                "stream": "/anonymous/lab-health/"
+            }
+        }
+    ]
+}
