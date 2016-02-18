@@ -1,39 +1,57 @@
 {
     "actions": [
+    {
+        "command": "deploy_linaro_kernel",
+        "metadata":
         {
-            "command": "deploy_linaro_kernel",
-            "metadata": {
-                "image.type": "kernel-ci",
-                "image.url": "file:///home/powerci/POWERCI/images/juno/",
-                "kernel.tree": "mainline",
-                "kernel.version": "v4.5-rc3-23-g2178cbc68f36",
-                "device.tree": "juno.dtb",
-                "kernel.endian": "little",
-                "kernel.defconfig": "arm64-defconfig",
-                "platform.fastboot": "false",
-                "test.plan": "boot"
-            },
-            "parameters": {
-                "dtb": "file:///home/powerci/POWERCI/images/juno/juno.dtb",
-                "kernel": "file:///home/powerci/POWERCI/images/juno/Image",
-                "overlays": ["file:///home/powerci/POWERCI/images/juno/modules.tar.xz"],
-                "nfsrootfs": "http://releases.linaro.org/15.01/openembedded/aarch64/linaro-image-minimal-genericarmv8-20150123-736.rootfs.tar.gz"
-            }
+            "device.tree": "juno.dtb",
+            "image.type": "kernel-ci",
+            "image.url": "file:///home/powerci/POWERCI/images/juno/",
+            "kernel.defconfig": "arm64-defconfig",
+            "kernel.endian": "little",
+            "kernel.tree": "mainline",
+            "kernel.version": "v4.5-rc3-23-g2178cbc68f36",
+            "platform.fastboot": "false",
+            "test.plan": "boot"
         },
+        "parameters":
         {
-            "command": "boot_linaro_image"
-        },
-        {
-            "command": "submit_results",
-            "parameters": {
-                "server": "http://lava-baylibre.local:10080/RPC2/",
-                "stream": "/anonymous/lab-health/"
-            }
+            "dtb": "file:///home/powerci/POWERCI/images/juno/juno.dtb",
+            "kernel": "file:///home/powerci/POWERCI/images/juno/uImage",
+            "nfsrootfs": "http://releases.linaro.org/15.01/openembedded/aarch64/linaro-image-minimal-genericarmv8-20150123-736.rootfs.tar.gz",
+            "overlays": [
+                "file:///home/powerci/POWERCI/images/juno/modules.tar.xz"
+            ]
         }
-    ],
-    "device_type": "juno-bootloader",
+    },
+    {
+        "command": "boot_linaro_image"
+    },
+    {
+        "command": "lava_command_run",
+        "parameters":
+        {
+            "commands": [
+                "sleep 10",
+                "echo +10 > /sys/class/rtc/rtc0/wakealarm",
+                "echo mem > /sys/power/state"
+            ],
+            "parser": "^(?P<test_case_id>[^:]+):\\s*(?P<message>w+)\\s+(?P<units>\\w+)\\s+(?P<result>\\w+)",
+            "timeout": 5000
+        }
+    },
+    {
+        "command": "submit_results",
+        "parameters":
+        {
+            "server": "http://lava-baylibre.local:10080/RPC2/",
+            "stream": "/anonymous/lab-health/"
+        }
+    }],
+    "health-check": true,
     "job_name": "juno-health",
     "logging_level": "DEBUG",
     "priority": "high",
+    "target": "juno_0",
     "timeout": 600
 }
