@@ -1,0 +1,39 @@
+{
+    "actions": [
+        {
+            "command": "deploy_linaro_kernel",
+            "metadata": {
+                "image.type": "kernel-ci",
+                "image.url": "file:///home/powerci/POWERCI/images/juno/",
+                "kernel.tree": "mainline",
+                "kernel.version": "v4.5-rc3-23-g2178cbc68f36",
+                "device.tree": "juno.dtb",
+                "kernel.endian": "little",
+                "kernel.defconfig": "arm64-defconfig",
+                "platform.fastboot": "false",
+                "test.plan": "boot"
+            },
+            "parameters": {
+                "dtb": "file:///home/powerci/POWERCI/images/juno/juno.dtb",
+                "kernel": "file:///home/powerci/POWERCI/images/juno/Image",
+                "overlays": ["file:///home/powerci/POWERCI/images/juno/modules.tar.xz"],
+                "nfsrootfs": "http://releases.linaro.org/15.01/openembedded/aarch64/linaro-image-minimal-genericarmv8-20150123-736.rootfs.tar.gz"
+            }
+        },
+        {
+            "command": "boot_linaro_image"
+        },
+        {
+            "command": "submit_results",
+            "parameters": {
+                "server": "http://lava-baylibre.local:10080/RPC2/",
+                "stream": "/anonymous/lab-health/"
+            }
+        }
+    ],
+    "device_type": "juno-bootloader",
+    "job_name": "juno-health",
+    "logging_level": "DEBUG",
+    "priority": "high",
+    "timeout": 600
+}
