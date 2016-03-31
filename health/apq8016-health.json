@@ -1,0 +1,19 @@
+{
+    "actions": [
+        {
+            "command": "deploy_linaro_kernel",
+            "parameters": {
+                "dtb": "http://builds.96boards.org/releases/dragonboard410c/linaro/ubuntu/15.06/apq8016-sbc.dtb",
+                "kernel": "http://builds.96boards.org/releases/dragonboard410c/linaro/ubuntu/15.06/Image",
+                "ramdisk": "http://storage.kernelci.org/images/rootfs/buildroot/arm64/rootfs.cpio.gz"
+            }
+        },
+        {
+            "command": "boot_linaro_image"
+        }
+    ],
+    "device_type": "apq8016-sbc",
+    "job_name": "apq8016-sbc-kernel-boot-test",
+    "logging_level": "DEBUG",
+    "timeout": 18000
+}
