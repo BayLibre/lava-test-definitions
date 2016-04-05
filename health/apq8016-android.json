@@ -1,0 +1,37 @@
+{
+    "actions": [
+        {
+            "command": "deploy_linaro_android_image",
+            "parameters": {
+                "images": [
+                    {
+                        "partition": "boot",
+                        "url": "http://builds.96boards.org/releases/dragonboard410c/qualcomm/android/15.06/boot.img.tar.xz"
+                    },
+                    {
+                        "partition": "system",
+                        "url": "http://builds.96boards.org/releases/dragonboard410c/qualcomm/android/15.06/system.img.tar.xz"
+                    },
+                    {
+                        "partition": "cache",
+                        "url": "http://builds.96boards.org/releases/dragonboard410c/qualcomm/android/15.06/cache.img.tar.xz"
+                    },
+                    {
+                        "partition": "userdata",
+                        "url": "http://builds.96boards.org/releases/dragonboard410c/qualcomm/android/15.06/userdata.img.tar.xz"
+                    }
+                ]
+            }
+        },
+        {
+            "command": "boot_linaro_android_image",
+            "parameters": {
+                "test_image_prompt": "shell@????"
+            }
+        }
+    ],
+    "device_type": "apq8016-sbc",
+    "job_name": "apq8016-sbc-android-boot-test",
+    "logging_level": "DEBUG",
+    "timeout": 18000
+}
