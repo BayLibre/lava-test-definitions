@@ -16,6 +16,7 @@ metadata:
         - vexpress-a9
         - vexpress-tc2
         - juno
+        - beaglebone-black
 
 run:
     steps:
@@ -24,4 +25,3 @@ run:
         - lava-test-case linux-linaro-ubuntu-vmstat --shell vmstat
         - lava-test-case linux-linaro-ubuntu-ifconfig --shell ifconfig -a
         - lava-test-case linux-linaro-ubuntu-lscpu --shell lscpu
-        - lava-test-case linux-linaro-ubuntu-lsb_release --shell lsb_release -a

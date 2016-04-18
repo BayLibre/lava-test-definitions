@@ -1,0 +1,55 @@
+{
+    "actions": [
+        {
+            "command": "deploy_linaro_kernel",
+            "metadata": {
+                "image.type": "kernel-ci",
+                "image.url": "http://storage.kernelci.org/mainline/v4.6-rc3/arm-multi_v7_defconfig/",
+                "kernel.tree": "mainline",
+                "kernel.version": "v4.6-rc3",
+                "device.tree": "am335x-boneblack.dtb",
+                "kernel.endian": "little",
+                "kernel.defconfig": "arm-multi_v7_defconfig",
+                "platform.fastboot": "false",
+                "test.plan": "ltp-mm",
+                "test.suite": "ltp",
+                "test.set": "basic-shell",
+                "test.desc": "basic shell test",
+                "test.type": "functional"
+            },
+            "parameters": {
+                "dtb": "http://storage.kernelci.org/mainline/v4.6-rc3/arm-multi_v7_defconfig/dtbs/am335x-boneblack.dtb",
+                "kernel": "http://storage.kernelci.org/mainline/v4.6-rc3/arm-multi_v7_defconfig/zImage",
+                "overlays": ["http://storage.kernelci.org/mainline/v4.6-rc3/arm-multi_v7_defconfig/modules.tar.xz"],
+                "nfsrootfs": "http://releases.linaro.org/15.02/openembedded/images/lamp-armv7a/linaro-image-lamp-genericarmv7a-20150222-322.rootfs.tar.gz"
+            }
+        },
+        {
+            "command": "lava_test_shell",
+            "parameters": {
+                "testdef_repos": [
+                    {
+                        "git-repo": "https://github.com/BayLibre/lava-test-definitions.git",
+                        "parameters": {
+                            "TST_CMDFILES": "mm"
+                        },
+                        "testdef": "test-shell/basic-tests.yaml"
+                    }
+                ],
+                "timeout": 3600
+            }
+        },
+        {
+            "command": "submit_results",
+            "parameters": {
+                "server": "http://lava.baylibre.com:10080/RPC2/",
+                "stream": "/anonymous/powerci/"
+            }
+        }
+    ],
+    "device_type": "beaglebone-black",
+    "job_name": "mainline-v4.6-rc3-arm-multi_v7_defconfig-am335x-boneblack.dtb-beaglebone-black-ltp-mm",
+    "logging_level": "DEBUG",
+    "priority": "high",
+    "timeout": 3601
+}
