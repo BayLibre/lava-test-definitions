@@ -6,7 +6,7 @@
         {
             "device.tree": "juno.dtb",
             "image.type": "kernel-ci",
-            "image.url": "file:///home/powerci/POWERCI/images/juno/",
+            "image.url": "file:///home/powerci/POWERCI/images/arm64/juno/",
             "kernel.defconfig": "arm64-defconfig",
             "kernel.endian": "little",
             "kernel.tree": "mainline",
@@ -16,11 +16,11 @@
         },
         "parameters":
         {
-            "dtb": "file:///home/powerci/POWERCI/images/juno/juno.dtb",
-            "kernel": "file:///home/powerci/POWERCI/images/juno/uImage",
+            "dtb": "file:///home/powerci/POWERCI/images/arm64/juno/juno.dtb",
+            "kernel": "file:///home/powerci/POWERCI/images/arm64/juno/uImage",
             "nfsrootfs": "http://releases.linaro.org/15.01/openembedded/aarch64/linaro-image-minimal-genericarmv8-20150123-736.rootfs.tar.gz",
             "overlays": [
-                "file:///home/powerci/POWERCI/images/juno/modules.tar.xz"
+                "file:///home/powerci/POWERCI/images/arm64/juno/modules.tar.xz"
             ]
         }
     },

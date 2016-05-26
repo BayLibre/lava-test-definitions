@@ -7,9 +7,9 @@
         {
             "command": "deploy_linaro_kernel",
             "parameters": {
-                "dtb": "file:///home/powerci/POWERCI/images/panda-es/omap4-panda-es.dtb",
-                "kernel": "file:///home/powerci/POWERCI/images/panda-es/zImage",
-		"overlays": ["file:///home/powerci/POWERCI/images/panda-es/modules.tar.xz"],
+                "dtb": "file:///home/powerci/POWERCI/images/arm/panda-es/omap4-panda-es.dtb",
+                "kernel": "file:///home/powerci/POWERCI/images/arm/panda-es/zImage",
+		"overlays": ["file:///home/powerci/POWERCI/images/arm/panda-es/modules.tar.xz"],
                 "ramdisk": "http://storage.kernelci.org/images/rootfs/buildroot/armel/rootfs.cpio.gz"
             },
             "metadata": {
