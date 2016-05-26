@@ -1,0 +1,57 @@
+{
+    "actions": [
+    {
+        "command": "deploy_linaro_kernel",
+        "metadata":
+        {
+            "device.tree": "meson-gxbb-p200.dtb",
+            "image.type": "kernel-ci",
+            "image.url": "file:///home/powerci/POWERCI/images/arm64/meson-gxbb-p200/",
+            "kernel.defconfig": "arm64-defconfig",
+            "kernel.endian": "little",
+            "kernel.tree": "mainline",
+            "kernel.version": "v4.6+",
+            "platform.fastboot": "false",
+            "test.plan": "boot"
+        },
+        "parameters":
+        {
+            "dtb": "file:///home/powerci/POWERCI/images/arm64/meson-gxbb-p200/meson-gxbb-p200.dtb",
+            "kernel": "file:///home/powerci/POWERCI/images/arm64/meson-gxbb-p200/vmlinux",
+            "nfsrootfs": "http://releases.linaro.org/15.01/openembedded/aarch64/linaro-image-minimal-genericarmv8-20150123-736.rootfs.tar.gz",
+            "overlays": [
+                "file:///home/powerci/POWERCI/images/arm64/meson-gxbb-p200/modules.tar.xz"
+            ]
+        }
+    },
+    {
+        "command": "boot_linaro_image"
+    },
+    {
+        "command": "lava_command_run",
+        "parameters":
+        {
+            "commands": [
+                "sleep 10",
+                "echo +10 > /sys/class/rtc/rtc0/wakealarm",
+                "echo mem > /sys/power/state"
+            ],
+            "parser": "^(?P<test_case_id>[^:]+):\\s*(?P<message>w+)\\s+(?P<units>\\w+)\\s+(?P<result>\\w+)",
+            "timeout": 5000
+        }
+    },
+    {
+        "command": "submit_results",
+        "parameters":
+        {
+            "server": "http://lava-baylibre.local:10080/RPC2/",
+            "stream": "/anonymous/lab-health/"
+        }
+    }],
+    "health-check": true,
+    "job_name": "meson-gxbb-p200-health",
+    "logging_level": "DEBUG",
+    "priority": "high",
+    "target": "meson-gxbb-p200",
+    "timeout": 600
+}
