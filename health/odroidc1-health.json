@@ -7,9 +7,9 @@
         {
             "command": "deploy_linaro_kernel",
             "parameters": {
-                "dtb": "file:///home/powerci/POWERCI/images/arm/odroidc1/meson8b-odroidc1.dtb",
-                "kernel": "file:///home/powerci/POWERCI/images/arm/odroidc1/uImage",
-		"overlays": ["file:///home/powerci/POWERCI/images/arm/odroidc1/modules.tar.xz"],
+                "dtb": "file:///home/powerci/POWERCI/images/arm/meson8b-odroidc1/meson8b-odroidc1.dtb",
+                "kernel": "file:///home/powerci/POWERCI/images/arm/meson8b-odroidc1/uImage",
+		"overlays": ["file:///home/powerci/POWERCI/images/arm/meson8b-odroidc1/modules.tar.xz"],
                 "ramdisk": "http://storage.kernelci.org/images/rootfs/buildroot/armel/rootfs.cpio.gz"
             },
             "metadata": {
