@@ -2,6 +2,7 @@
     "timeout": 900,
     "job_name": "am335x-boneblack-health",
     "health-check": true,
+    "device_type": "beaglebone-black",
     "logging_level": "DEBUG",
     "actions": [
         {
