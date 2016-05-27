@@ -1,7 +1,7 @@
 {
     "timeout": 900,
     "device_type": "panda-es",
-    "job_name": "panda-health",
+    "job_name": "omap4-panda-es-health",
     "logging_level": "DEBUG",
     "actions": [
         {

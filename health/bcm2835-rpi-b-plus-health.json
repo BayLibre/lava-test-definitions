@@ -1,6 +1,6 @@
-{
+p
     "timeout": 900,
-    "job_name": "rpi-zero-health",
+    "job_name": "bcm2835-rpi-b-plus-health",
     "device_type": "rpi-zero",
     "logging_level": "DEBUG",
     "actions": [

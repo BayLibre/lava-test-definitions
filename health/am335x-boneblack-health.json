@@ -1,6 +1,7 @@
 {
     "timeout": 900,
-    "job_name": "bbb-health",
+    "job_name": "am335x-boneblack-health",
+    "health-check": true,
     "logging_level": "DEBUG",
     "actions": [
         {

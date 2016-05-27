@@ -12,8 +12,9 @@
             "command": "boot_linaro_image"
         }
     ],
+    "health-check": true,
     "device_type": "apq8016-sbc",
-    "job_name": "apq8016-sbc-kernel-boot-test",
+    "job_name": "apq8016-sbc-health",
     "logging_level": "DEBUG",
     "timeout": 18000
 }
