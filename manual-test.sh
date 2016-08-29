@@ -109,8 +109,15 @@ echo ""
 #PORT=`sudo lsof -nP -i | grep apache2 | awk '{ print $9 }' | awk -F: '{ print $2 }' | tail -1`
 
 #calc Address automatically
-ADDR="http://${USER}@`uname -n`.local/RPC2/"
+LAVA_URL_API="http://${USER}@`uname -n`.local:10080/RPC2/"
+export LAVA_URL_API="http://${USER}@`uname -n`.local:10080/RPC2/"
+
+#change variable ${LAVA_URL_API} in ${GOOD_FILE[0]} (json file) by correct value
+sed -e "s#\"{LAVA_URL_API}\"#\"${LAVA_URL_API}\"#g" ${GOOD_FILE[0]} > ${GOOD_FILE[0]}.new
 
 #execute test
 echo "Execute test ${GOOD_FILE[0]}"
-lava-tool submit-job ${ADDR} ${GOOD_FILE[0]}
+echo "lava-tool submit-job ${LAVA_URL_API} ${GOOD_FILE[0]}.new"
+lava-tool submit-job ${LAVA_URL_API} ${GOOD_FILE[0]}.new
+
+rm -f ${GOOD_FILE[0]}.new

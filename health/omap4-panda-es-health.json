@@ -53,7 +53,7 @@
         {
             "command": "submit_results_on_host",
             "parameters": {
-                "server": "http://lava-baylibre.local:10080/RPC2/",
+                "server": "{LAVA_URL_API}",
                 "stream": "/anonymous/lab-health/"
             }
         }
